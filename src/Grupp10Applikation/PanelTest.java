@@ -18,6 +18,12 @@ public class PanelTest extends javax.swing.JPanel {
    private Sql sql;
    private int admin;
    private LogIn login;
+   private String anvandarText;
+   private String titel;
+   private String datum;
+   private String tid;
+   private String anvandarNamn;
+   
    
 
     /**
@@ -36,7 +42,12 @@ public class PanelTest extends javax.swing.JPanel {
         this.admin=arAdmin;
         this.anvandare = anvandare;
         this.login = new LogIn();
-        
+        this.tid = tid;
+        this.datum = datum;
+        this.titel = titel;
+        this.anvandarText = textMeddelande;
+        this.anvandarNamn = anvandarInlagg;
+       
         
         jButton2.setVisible(false);
        
@@ -150,7 +161,9 @@ public class PanelTest extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    
+       KommentarFrame kommentarframe = new KommentarFrame(anvandarNamn, titel, datum, tid, anvandarText);
+       kommentarframe.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
