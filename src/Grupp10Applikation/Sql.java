@@ -34,6 +34,7 @@ public class Sql {
     private String guestTelnr = "";
     private int anvandarID = 0;
     private String ip = "10.22.19.205";
+    private  String anvandareID;
 
     public Sql() {
 
@@ -100,6 +101,40 @@ public class Sql {
         }
         
     }
+    
+    public void uppdateraInlagg(){
+        
+      
+    
+        
+        try{
+            String sql1 = ("Select AnvandareID from anvandare where Anvandarnamn = '"+PanelTest.getAnvandarNamn()+"'");
+            System.out.println(sql1);
+            
+            PreparedStatement pst = conn.prepareStatement(sql1);
+            
+
+            ResultSet rs = pst.executeQuery(sql1);
+            
+            while(rs.next()){
+                
+                anvandareID = rs.getString(1);
+                
+            }
+            
+            
+            String sql = ("update inlagg set text ='" + PanelTest.getRedigeradText() +"'"+ " where Tid = '" + PanelTest.getTid()  +"'" + " and datum = '" + PanelTest.getDatum()+"'" + " and anvandarID = '"+ anvandareID +"'");
+          
+            System.out.println(sql);
+            PreparedStatement pst1 = conn.prepareStatement(sql); 
+            pst1.executeUpdate();
+
+        }
+        catch(SQLException ex){
+           System.out.print(ex);
+    }
+    }
+    
     
     private String getCurrentTime()
     {
