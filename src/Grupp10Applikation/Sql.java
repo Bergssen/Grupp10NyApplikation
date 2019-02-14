@@ -34,6 +34,8 @@ public class Sql {
     private String guestTelnr = "";
     private int anvandarID = 0;
     private String ip = "10.22.19.205";
+    private Sql sql;
+            
 
     public Sql() {
 
