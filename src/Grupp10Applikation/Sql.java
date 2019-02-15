@@ -160,6 +160,122 @@ public class Sql {
         
     }
     
+    public int incrementKommentarID()
+    {
+    
+         int kommentarID = 0;
+        try {
+            String sql = "Select max(KommentarID) from kommentar";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+
+            kommentarID = rs.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        kommentarID += 1;
+        return kommentarID;
+        
+    
+    }
+    
+    private int getAnvandarIDAnvandarnamn(String anvandarnamn)
+    {
+    
+    int anvID = 0;
+     try {
+            String sql = "select AnvandareID from anvandare where Anvandarnamn = '" + anvandarnamn + "'";
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+
+                anvID = rs.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      return anvID;
+        
+    }
+    
+    public int getInlaggsIDkommentar(String tid, String datum, String text, String anvandarnamn)
+    {
+    int inlaggsID = 0;
+    int anvandarIdet = getAnvandarIDAnvandarnamn(anvandarnamn);
+    System.out.println(anvandarIdet + " anvandar" + tid + " tid" + text + " text" + anvandarnamn + " anvandarnamn");
+    try {
+            String sql = "select InlaggsID from inlagg where text = '"+text+"' and Datum = '"+datum+"' and Tid = '"+tid+"' and AnvandarID ="+anvandarIdet;
+            PreparedStatement pst = conn.prepareStatement(sql);
+
+            ResultSet rs = pst.executeQuery(sql);
+
+            while (rs.next()) {
+
+                inlaggsID = rs.getInt(1);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    System.out.println(inlaggsID + " hämtar id");
+    return inlaggsID;
+    }
+    
+    public void nyKommentar(String tid, String datum, String inlaggsText, String anvandarnamn, String kommentarText) throws ParseException
+    {
+      int kommentarID = incrementKommentarID();
+      int anvandarIDD = getAnvandarID();
+      int inlaggsID = getInlaggsIDkommentar(tid, datum, inlaggsText, anvandarnamn);
+      System.out.println(inlaggsID + " ID");
+      String tiden = getCurrentTime();
+      
+      System.out.println(anvandarIDD);
+      System.out.println(anvandare);
+      
+      try{
+        String sql = "Insert into kommentar (KommentarID, text) values (?, ?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, kommentarID);
+            pst.setString(2, kommentarText);
+            
+            
+            pst.executeUpdate();
+        }
+        catch(SQLException ex){
+        System.out.print(ex);
+        }  
+      
+      
+      try{
+        String sql = "Insert into anvandare_kommentar_inlagg values (?, ?, ?, ?, ?)";
+            PreparedStatement pst = conn.prepareStatement(sql);
+            pst.setInt(1, anvandarIDD);
+            pst.setInt(2, kommentarID);
+            pst.setInt(3, inlaggsID);
+            pst.setString(4, tiden);
+            pst.setTimestamp(5, getCurrentDate());
+            
+            
+            pst.executeUpdate();
+        }
+        catch(SQLException ex){
+        System.out.print(ex);
+        }
+      
+    }
+    
     public int incrementInlaggsID()
     {
        int inlaggsID = 0;

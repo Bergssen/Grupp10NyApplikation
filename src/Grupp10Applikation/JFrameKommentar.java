@@ -122,7 +122,7 @@ public class JFrameKommentar extends javax.swing.JFrame {
                         .addComponent(jLDatum)
                         .addGap(26, 26, 26)
                         .addComponent(jLTid)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPVisaInlaggLayout.setVerticalGroup(
             jPVisaInlaggLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +207,7 @@ public class JFrameKommentar extends javax.swing.JFrame {
             .addComponent(jPHuvud, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(790, 704));
+        setSize(new java.awt.Dimension(796, 740));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -273,7 +273,7 @@ public class JFrameKommentar extends javax.swing.JFrame {
     private void jBKommenteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBKommenteraActionPerformed
 
         String kommentarText = jTextKommentaren.getText();
-        Sql sql = new Sql(anvandare);
+       
         System.out.println(anvandare);
         try {
             sql.nyKommentar(tid, datum, text, anvandarNamn, kommentarText);
