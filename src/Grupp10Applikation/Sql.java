@@ -35,12 +35,6 @@ public class Sql {
     private int anvandarID = 0;
     private String ip = "10.22.19.205";
 
-    private Sql sql;
-            
-
-    private  String anvandareID;
-
-
     public Sql() {
 
         try {
@@ -107,40 +101,6 @@ public class Sql {
         
     }
     
-    public void uppdateraInlagg(){
-        
-      
-    
-        
-        try{
-            String sql1 = ("Select AnvandareID from anvandare where Anvandarnamn = '"+PanelTest.getAnvandarNamn()+"'");
-            System.out.println(sql1);
-            
-            PreparedStatement pst = conn.prepareStatement(sql1);
-            
-
-            ResultSet rs = pst.executeQuery(sql1);
-            
-            while(rs.next()){
-                
-                anvandareID = rs.getString(1);
-                
-            }
-            
-            
-            String sql = ("update inlagg set text ='" + PanelTest.getRedigeradText() +"'"+ " where Tid = '" + PanelTest.getTid()  +"'" + " and datum = '" + PanelTest.getDatum()+"'" + " and anvandarID = '"+ anvandareID +"'");
-          
-            System.out.println(sql);
-            PreparedStatement pst1 = conn.prepareStatement(sql); 
-            pst1.executeUpdate();
-
-        }
-        catch(SQLException ex){
-           System.out.print(ex);
-    }
-    }
-    
-    
     private String getCurrentTime()
     {
 
@@ -154,132 +114,6 @@ public class Sql {
         
       java.util.Date today = new java.util.Date();
       return new java.sql.Timestamp(today.getTime());
-    }
-    
-    
-    
-    public int getInlaggsIDkommentar(String tid, String datum, String text, String anvandarnamn)
-    {
-    int inlaggsID = 0;
-    int anvandarIdet = getAnvandarIDAnvandarnamn(anvandarnamn);
-    System.out.println(anvandarIdet + " anvandar" + tid + " tid" + text + " text" + anvandarnamn + " anvandarnamn");
-    try {
-            String sql = "select InlaggsID from inlagg where text = '"+text+"' and Datum = '"+datum+"' and Tid = '"+tid+"' and AnvandarID ="+anvandarIdet;
-            PreparedStatement pst = conn.prepareStatement(sql);
-
-            ResultSet rs = pst.executeQuery(sql);
-
-            while (rs.next()) {
-
-                inlaggsID = rs.getInt(1);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    System.out.println(inlaggsID + " hämtar id");
-    return inlaggsID;
-    }
-    
-    public void nyKommentar(String tid, String datum, String inlaggsText, String anvandarnamn, String kommentarText) throws ParseException
-    {
-      int kommentarID = incrementKommentarID();
-      int anvandarIDD = getAnvandarID();
-      int inlaggsID = getInlaggsIDkommentar(tid, datum, inlaggsText, anvandarnamn);
-      System.out.println(inlaggsID + " ID");
-      String tiden = getCurrentTime();
-      
-      System.out.println(anvandarIDD);
-      System.out.println(anvandare);
-      
-      try{
-        String sql = "Insert into kommentar (KommentarID, text) values (?, ?)";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1, kommentarID);
-            pst.setString(2, kommentarText);
-            
-            
-            pst.executeUpdate();
-        }
-        catch(SQLException ex){
-        System.out.print(ex);
-        }  
-      
-      
-      try{
-        String sql = "Insert into anvandare_kommentar_inlagg values (?, ?, ?, ?, ?)";
-            PreparedStatement pst = conn.prepareStatement(sql);
-            pst.setInt(1, anvandarIDD);
-            pst.setInt(2, kommentarID);
-            pst.setInt(3, inlaggsID);
-            pst.setString(4, tiden);
-            pst.setTimestamp(5, getCurrentDate());
-            
-            
-            pst.executeUpdate();
-        }
-        catch(SQLException ex){
-        System.out.print(ex);
-        }
-      
-    }
-    
-    public boolean harInlaggKommentar(int inlaggsID)
-    {
-    boolean hittad = false;
-    
-    try {
-            String sql = "select count(*) from anvandare_kommentar_inlagg where InlaggsID ="+ inlaggsID;
-            PreparedStatement pst = conn.prepareStatement(sql);
-
-            ResultSet rs = pst.executeQuery(sql);
-
-            while (rs.next()) {
-
-               int check= rs.getInt(1);
-               
-               System.out.println(check + "check");
-               
-               if(check != 1)
-               {
-                 System.out.println("fungerar");
-                 hittad = true;
-                 break;
-               }              
-            }
-            
-            
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    
-    return hittad;
-    }
-    
-    private int getAnvandarIDAnvandarnamn(String anvandarnamn)
-    {
-    
-    int anvID = 0;
-     try {
-            String sql = "select AnvandareID from anvandare where Anvandarnamn = '" + anvandarnamn + "'";
-            PreparedStatement pst = conn.prepareStatement(sql);
-
-            ResultSet rs = pst.executeQuery(sql);
-
-            while (rs.next()) {
-
-                anvID = rs.getInt(1);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      return anvID;
-        
     }
     
     private int getAnvandarID()
@@ -301,31 +135,6 @@ public class Sql {
             Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
         }
       return anvID;
-    }
-    
-    public int incrementKommentarID()
-    {
-    
-         int kommentarID = 0;
-        try {
-            String sql = "Select max(KommentarID) from kommentar";
-            PreparedStatement pst = conn.prepareStatement(sql);
-
-            ResultSet rs = pst.executeQuery(sql);
-
-            while (rs.next()) {
-
-            kommentarID = rs.getInt(1);
-
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(Sql.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        kommentarID += 1;
-        return kommentarID;
-        
-    
     }
     
     public int incrementFilID(){
