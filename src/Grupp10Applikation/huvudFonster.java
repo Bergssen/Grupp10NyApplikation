@@ -71,6 +71,7 @@ public class huvudFonster extends javax.swing.JFrame {
         jPHuvudInlaggPanel.add(pForetag, c);
         pAktivitet.setVisible(false);
         pForetag.setVisible(false);
+        
   
      /*   int tid = 1;
         Timer timer = new Timer();
@@ -101,7 +102,7 @@ public class huvudFonster extends javax.swing.JFrame {
 
     public void hamtaInlagg() {
 
-        String textR = "";
+        //String textR = "";
         Image image;
         byte[] imageBytes;
 
@@ -137,18 +138,18 @@ public class huvudFonster extends javax.swing.JFrame {
                 ImageIcon bild = new ImageIcon(img);
 
                 
-
+                /*
                 StringBuilder sb = new StringBuilder(text);
 
                 int i = 0;
                 while ((i = sb.indexOf(" ", i + 100)) != -1) {
                     sb.replace(i, i + 1, "\n");
-
+                 
                 }
 
-                textR = sb.toString();
+                textR = sb.toString(); */
                 
-                PanelTest paneltest = new PanelTest(textR, bild, text2,anvandare, admin, titel, datum, tid);
+                PanelTest paneltest = new PanelTest(text, bild, text2,anvandare, admin, titel, datum, tid);
                 paneltest.setVisible(true);
                 jPanel1.add(paneltest);
                 
@@ -200,6 +201,7 @@ public class huvudFonster extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         lblValkomst.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblValkomst.setText("Välkommen! Just nu visas startflödet");
@@ -296,7 +298,7 @@ public class huvudFonster extends javax.swing.JFrame {
                             .addComponent(btnVisaAllaFloden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBokaEttMöte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVisaProfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnForskningsFlode, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                            .addComponent(btnForskningsFlode, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(51, 51, 51)

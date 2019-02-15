@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
  */
 public class PanelTest extends javax.swing.JPanel {
     
+    
    private AnvändarSida nysida;
    public final String anvandare;
    private Sql sql;
@@ -23,6 +24,8 @@ public class PanelTest extends javax.swing.JPanel {
    private String datum;
    private String tid;
    private String anvandarNamn;
+   private ImageIcon bild;
+   
    
    
 
@@ -46,8 +49,10 @@ public class PanelTest extends javax.swing.JPanel {
         this.datum = datum;
         this.titel = titel;
         this.anvandarText = textMeddelande;
-        this.anvandarNamn = anvandarInlagg;
-       
+        this.anvandarNamn = anvandarInlagg;        
+        this.bild = bild;
+        jTextArea1.setLineWrap(true);
+        
         
         jButton2.setVisible(false);
        
@@ -161,14 +166,15 @@ public class PanelTest extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    
-       KommentarFrame kommentarframe = new KommentarFrame(anvandarNamn, titel, datum, tid, anvandarText);
-       kommentarframe.setVisible(true);
+        System.out.println(anvandare);
+        JFrameKommentar fk = new JFrameKommentar(anvandarNamn, titel, datum, tid, anvandarText, bild, anvandare);
+        fk.setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        Sql sql = new Sql();
+    
+        Sql sql = new Sql(anvandare);
         sql.taBortInlagg(jTextArea1.getText());
         this.removeAll();
     }//GEN-LAST:event_jButton2ActionPerformed

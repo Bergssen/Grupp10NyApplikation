@@ -19,6 +19,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -49,7 +52,7 @@
                           <Component id="btnVisaAllaFloden" max="32767" attributes="0"/>
                           <Component id="btnBokaEttMöte" max="32767" attributes="0"/>
                           <Component id="btnVisaProfil" max="32767" attributes="0"/>
-                          <Component id="btnForskningsFlode" alignment="0" pref="165" max="32767" attributes="0"/>
+                          <Component id="btnForskningsFlode" alignment="0" pref="0" max="32767" attributes="0"/>
                           <Component id="jButton1" max="32767" attributes="0"/>
                           <Component id="btnAdmin" max="32767" attributes="0"/>
                       </Group>
