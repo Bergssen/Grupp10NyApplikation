@@ -71,7 +71,6 @@ public class huvudFonster extends javax.swing.JFrame {
         jPHuvudInlaggPanel.add(pForetag, c);
         pAktivitet.setVisible(false);
         pForetag.setVisible(false);
-        
   
      /*   int tid = 1;
         Timer timer = new Timer();
@@ -102,7 +101,7 @@ public class huvudFonster extends javax.swing.JFrame {
 
     public void hamtaInlagg() {
 
-        //String textR = "";
+        String textR = "";
         Image image;
         byte[] imageBytes;
 
@@ -138,18 +137,18 @@ public class huvudFonster extends javax.swing.JFrame {
                 ImageIcon bild = new ImageIcon(img);
 
                 
-                /*
+
                 StringBuilder sb = new StringBuilder(text);
 
                 int i = 0;
                 while ((i = sb.indexOf(" ", i + 100)) != -1) {
                     sb.replace(i, i + 1, "\n");
-                 
+
                 }
 
-                textR = sb.toString(); */
+                textR = sb.toString();
                 
-                PanelTest paneltest = new PanelTest(text, bild, text2,anvandare, admin, titel, datum, tid);
+                PanelTest paneltest = new PanelTest(textR, bild, text2,anvandare, admin, titel, datum, tid);
                 paneltest.setVisible(true);
                 jPanel1.add(paneltest);
                 
@@ -175,18 +174,15 @@ public class huvudFonster extends javax.swing.JFrame {
         lblValkomst = new javax.swing.JLabel();
         btnVisaProfil = new javax.swing.JButton();
         btnVisaAktivitetsflode = new javax.swing.JButton();
-        btnForskningsFlode = new javax.swing.JButton();
         btnVisaAllaFloden = new javax.swing.JButton();
         btnForetagsFlode = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         btnVisaMedelande = new javax.swing.JButton();
         btnTaBortMedelande = new javax.swing.JButton();
-        btnBokaEttMöte = new javax.swing.JButton();
         lblProfilbild = new javax.swing.JLabel();
         lblInloggadSom = new javax.swing.JLabel();
         jSPValtDatum = new javax.swing.JScrollPane();
         jTAValtDatum = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
         jCalendar1 = new com.toedter.calendar.JCalendar();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
@@ -201,7 +197,6 @@ public class huvudFonster extends javax.swing.JFrame {
         menuBar1.add(menu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         lblValkomst.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         lblValkomst.setText("Välkommen! Just nu visas startflödet");
@@ -219,8 +214,6 @@ public class huvudFonster extends javax.swing.JFrame {
                 btnVisaAktivitetsflodeActionPerformed(evt);
             }
         });
-
-        btnForskningsFlode.setText("Visa forskningsflöde");
 
         btnVisaAllaFloden.setText("Visa alla flöden");
         btnVisaAllaFloden.addActionListener(new java.awt.event.ActionListener() {
@@ -243,8 +236,6 @@ public class huvudFonster extends javax.swing.JFrame {
 
         btnTaBortMedelande.setText("Ta bort notis");
 
-        btnBokaEttMöte.setText("Boka ett möte");
-
         lblProfilbild.setText(" Här visas profilbilden");
 
         lblInloggadSom.setText("Du är inloggad som: namn");
@@ -253,8 +244,6 @@ public class huvudFonster extends javax.swing.JFrame {
         jTAValtDatum.setRows(5);
         jTAValtDatum.setText("Här visas information om valt datum");
         jSPValtDatum.setViewportView(jTAValtDatum);
-
-        jButton1.setText("Skapa nytt inlägg");
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
         jScrollPane1.setViewportView(jPanel1);
@@ -296,10 +285,7 @@ public class huvudFonster extends javax.swing.JFrame {
                             .addComponent(btnVisaAktivitetsflode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnForetagsFlode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVisaAllaFloden, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBokaEttMöte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnVisaProfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnForskningsFlode, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(51, 51, 51)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,27 +349,23 @@ public class huvudFonster extends javax.swing.JFrame {
                                 .addGap(175, 175, 175)
                                 .addComponent(jSPValtDatum, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jPHuvudInlaggPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(btnVisaProfil, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(36, 36, 36)
                                         .addComponent(btnVisaAktivitetsflode, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(40, 40, 40)
-                                        .addComponent(btnForskningsFlode, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(38, 38, 38)
+                                        .addGap(42, 42, 42)
                                         .addComponent(btnForetagsFlode, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(37, 37, 37)
+                                        .addGap(21, 21, 21)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(btnVisaAllaFloden, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(btnBokaEttMöte, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(29, 29, 29)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
+                                        .addGap(18, 18, 18)
                                         .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jPHuvudInlaggPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)))
                         .addGap(157, 157, 157))))
@@ -403,15 +385,82 @@ public class huvudFonster extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_btnVisaProfilActionPerformed
+public void visaFlode(int flode){
 
+ String textR = "";
+        Image image;
+        byte[] imageBytes;
+        int flode1 = flode;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"+sql.getIp()+":3306/namn", "Nikola", "password1234");
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select Text, Profilbild, anvandarnamn, inlagg.`Titel`, datum, tid from inlagg join anvandare on AnvandareID = AnvandarID where tillhorflode ='" + flode1 +"'order by datum desc, tid desc");
+
+            while (rs.next()) {
+
+                
+                
+                String text = rs.getString(1);
+                
+                imageBytes=rs.getBytes(2);
+                
+                String text2 = rs.getString(3);
+                
+                String titel = rs.getString(4);
+                
+                String datum = rs.getString(5);
+                
+                String tid = rs.getString(6);
+                
+                image=getToolkit().createImage(imageBytes);
+                
+                ImageIcon icon = new ImageIcon(image);
+                
+                Image img = icon.getImage().getScaledInstance(76, 52, Image.SCALE_SMOOTH);
+                
+                ImageIcon bild = new ImageIcon(img);
+
+                
+
+                StringBuilder sb = new StringBuilder(text);
+
+                int i = 0;
+                while ((i = sb.indexOf(" ", i + 100)) != -1) {
+                    sb.replace(i, i + 1, "\n");
+
+                }
+
+                textR = sb.toString();
+                
+                PanelTest paneltest = new PanelTest(textR, bild, text2,anvandare, admin, titel, datum, tid);
+                paneltest.setVisible(true);
+                jPanel1.add(paneltest);
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(huvudFonster.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+
+
+}
     private void btnVisaAktivitetsflodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAktivitetsflodeActionPerformed
         pAktivitet.setVisible(true);
         pForetag.setVisible(false);
+        jPanel1.removeAll();
+        visaFlode(2);
     }//GEN-LAST:event_btnVisaAktivitetsflodeActionPerformed
 
     private void btnForetagsFlodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnForetagsFlodeActionPerformed
         pForetag.setVisible(true);
         pAktivitet.setVisible(false);
+        jPanel1.removeAll();
+        visaFlode(1);
     }//GEN-LAST:event_btnForetagsFlodeActionPerformed
 
     private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
@@ -423,6 +472,8 @@ public class huvudFonster extends javax.swing.JFrame {
     private void btnVisaAllaFlodenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisaAllaFlodenActionPerformed
         pAktivitet.setVisible(false);
         pForetag.setVisible(false);
+        jPanel1.removeAll();
+        hamtaInlagg();
     }//GEN-LAST:event_btnVisaAllaFlodenActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -467,15 +518,12 @@ public class huvudFonster extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnBokaEttMöte;
     private javax.swing.JButton btnForetagsFlode;
-    private javax.swing.JButton btnForskningsFlode;
     private javax.swing.JButton btnTaBortMedelande;
     private javax.swing.JButton btnVisaAktivitetsflode;
     private javax.swing.JButton btnVisaAllaFloden;
     private javax.swing.JButton btnVisaMedelande;
     private javax.swing.JButton btnVisaProfil;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel2;

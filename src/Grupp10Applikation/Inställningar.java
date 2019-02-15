@@ -279,6 +279,8 @@ public void textInstallningar()
     }//GEN-LAST:event_btnAndraLosenActionPerformed
 
     private void btnAndraTitelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAndraTitelActionPerformed
+       if(Validering.validEpost(txtAndraEpost.getText()))
+               {
         String forNamn = txtAndraNamn.getText();
             String titel = txtAndraTitel.getText();
             String tele = txtAndraTeleNr.getText();
@@ -305,7 +307,7 @@ public void textInstallningar()
            {
            sql.andraFornamn(forNamn);
            }
-
+               }
     }//GEN-LAST:event_btnAndraTitelActionPerformed
 
     private void jBValjbildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBValjbildActionPerformed

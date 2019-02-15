@@ -5,9 +5,6 @@
  */
 package Grupp10Applikation;
 
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -15,7 +12,6 @@ import javax.swing.ImageIcon;
  * @author Nikola
  */
 public class PanelTest extends javax.swing.JPanel {
-    
     
    private AnvändarSida nysida;
    public final String anvandare;
@@ -27,15 +23,7 @@ public class PanelTest extends javax.swing.JPanel {
    private String datum;
    private String tid;
    private String anvandarNamn;
-   private ImageIcon bild;
    
- 
-
-   public static String nyttInlagg;
-   public static String redigeratInlagg;
-   public static String tidInlagg;
-   public static String datumInlagg;
-   public static String redigeradAnvandarNamn;
    
 
     /**
@@ -58,30 +46,16 @@ public class PanelTest extends javax.swing.JPanel {
         this.datum = datum;
         this.titel = titel;
         this.anvandarText = textMeddelande;
-        this.anvandarNamn = anvandarInlagg;        
-        this.bild = bild;
-        jTextArea1.setLineWrap(true);
-        
         this.anvandarNamn = anvandarInlagg;
-       jTextArea1.setEditable(false);
-
+       
         
         jButton2.setVisible(false);
-        
-       btnRedigera.setVisible(false);
-       btnRedigeraKlar.setVisible(false);
+       
         
         if(anvandarInlagg.equals(anvandare))
         {
-            btnRedigera.setVisible(true);
             jButton2.setVisible(true);
-            btnRedigeraKlar.setVisible(true);
         }
-        
-        
-        
-        
-            
         
         
     }
@@ -104,8 +78,6 @@ public class PanelTest extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        btnRedigera = new javax.swing.JButton();
-        btnRedigeraKlar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
 
@@ -144,20 +116,6 @@ public class PanelTest extends javax.swing.JPanel {
             }
         });
 
-        btnRedigera.setText("Redigera");
-        btnRedigera.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRedigeraActionPerformed(evt);
-            }
-        });
-
-        btnRedigeraKlar.setText("Klar");
-        btnRedigeraKlar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRedigeraKlarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,13 +136,9 @@ public class PanelTest extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRedigera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(btnRedigeraKlar))
+                .addComponent(jButton2)
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,26 +154,21 @@ public class PanelTest extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addComponent(jButton1)
                         .addComponent(jButton2)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRedigera)
-                    .addComponent(btnRedigeraKlar))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        System.out.println(anvandare);
-        JFrameKommentar fk = new JFrameKommentar(anvandarNamn, titel, datum, tid, anvandarText, bild, anvandare);
-        fk.setVisible(true);
-        
+    
+       KommentarFrame kommentarframe = new KommentarFrame(anvandarNamn, titel, datum, tid, anvandarText);
+       kommentarframe.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    
-        Sql sql = new Sql(anvandare);
+        
+        Sql sql = new Sql();
         sql.taBortInlagg(jTextArea1.getText());
         this.removeAll();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -252,49 +201,8 @@ public class PanelTest extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void btnRedigeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraActionPerformed
-       jTextArea1.setEditable(true);
-    }//GEN-LAST:event_btnRedigeraActionPerformed
-
-    private void btnRedigeraKlarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedigeraKlarActionPerformed
-        redigeratInlagg = jTextArea1.getText();
-        tidInlagg = jLabel5.getText();
-        datumInlagg = jLabel4.getText();
-        redigeradAnvandarNamn = jLabel2.getText();
-        sql.uppdateraInlagg();
-        jTextArea1.setEditable(false);
-        
-        anvandarText = redigeratInlagg;
-        
-       
-    }//GEN-LAST:event_btnRedigeraKlarActionPerformed
-
-    public static String getRedigeradText(){
-        
-        
-        
-        return redigeratInlagg;
-    }
-    
-    public static String getAnvandarNamn(){
-        
-        
-        return redigeradAnvandarNamn;
-    }
-    
-    public static String getTid(){
-        
-        return tidInlagg;
-    }
-    
-    public static String getDatum(){
-        
-        return datumInlagg;
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRedigera;
-    private javax.swing.JButton btnRedigeraKlar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
