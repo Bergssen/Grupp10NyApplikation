@@ -5,6 +5,7 @@
  */
 package Grupp10Applikation;
 
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -69,5 +70,24 @@ public class Validering {
 
        return resultat;
 }
-
+public static boolean validEpost(String email) 
+  {     boolean hittad = false;
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
+                            "[a-zA-Z0-9_+&*-]+)*@" + 
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
+                            "A-Z]{2,7}$"; 
+                              
+        Pattern pat = Pattern.compile(emailRegex); 
+        if (!pat.matcher(email).matches()) {
+            hittad = false; 
+            JOptionPane.showMessageDialog(null, "Fel format på lösenordet");
+        }
+        else {
+        hittad = true;
+        
+        }
+        return hittad;
+    }
+  
+  
 }

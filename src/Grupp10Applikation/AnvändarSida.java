@@ -10,6 +10,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 
@@ -40,6 +43,7 @@ public class AnvändarSida extends javax.swing.JFrame {
         initComponents();
         visaProfilbild(anvandare);
         this.admin =admin;
+        visaTidigareInlagg(anvandare);
         
     }
     
@@ -51,6 +55,7 @@ public class AnvändarSida extends javax.swing.JFrame {
         initComponents();
         this.sql = new Sql();
         visaProfilbild(guestNamn);
+        visaTidigareInlagg(guestAnvandare);
         
         
     }
@@ -107,11 +112,11 @@ public class AnvändarSida extends javax.swing.JFrame {
         txtVisaEpost = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtVisaTelNr = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtProfilPosts = new javax.swing.JTextArea();
         btnInstallning = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,32 +157,6 @@ public class AnvändarSida extends javax.swing.JFrame {
 
         txtVisaTelNr.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 204));
-
-        txtProfilPosts.setColumns(20);
-        txtProfilPosts.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        txtProfilPosts.setRows(5);
-        txtProfilPosts.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        txtProfilPosts.setName(""); // NOI18N
-        jScrollPane2.setViewportView(txtProfilPosts);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 641, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54))
-        );
-
         btnInstallning.setText("Inställningar");
         btnInstallning.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,6 +170,15 @@ public class AnvändarSida extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(2, 2));
+
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.PAGE_AXIS));
+        jScrollPane1.setViewportView(jPanel3);
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Tidigare inlägg av användaren");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,8 +218,11 @@ public class AnvändarSida extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jLabel9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 865, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(274, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,11 +253,18 @@ public class AnvändarSida extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtVisaTelNr, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btnInstallning)
                 .addGap(273, 273, 273))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jScrollPane1.getAccessibleContext().setAccessibleParent(this);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -322,6 +320,72 @@ public class AnvändarSida extends javax.swing.JFrame {
        txtVisaTitel.setText(sql.fyllText(anvandare,"Titel"));
        txtVisaTelNr.setText(sql.fyllText(anvandare,"Epost"));
        txtVisaEpost.setText(sql.fyllText(anvandare,"Telnr"));
+    }
+    
+    public void visaTidigareInlagg(String vilkenanvandare){
+    String textR = "";
+        Image image;
+        byte[] imageBytes;
+        String anvandare1= vilkenanvandare;
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://"+sql.getIp()+":3306/namn", "Nikola", "password1234");
+
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery("select Text, Profilbild, anvandarnamn, inlagg.`Titel`, datum, tid from inlagg join anvandare on AnvandareID = AnvandarID where anvandarnamn ='" + anvandare1 +"' order by datum desc, tid desc");
+
+            while (rs.next()) {
+
+                
+                
+                String text = rs.getString(1);
+                
+                imageBytes=rs.getBytes(2);
+                
+                String text2 = rs.getString(3);
+                
+                String titel = rs.getString(4);
+                
+                String datum = rs.getString(5);
+                
+                String tid = rs.getString(6);
+                
+                image=getToolkit().createImage(imageBytes);
+                
+                ImageIcon icon = new ImageIcon(image);
+                
+                Image img = icon.getImage().getScaledInstance(76, 52, Image.SCALE_SMOOTH);
+                
+                ImageIcon bild = new ImageIcon(img);
+
+                
+
+                StringBuilder sb = new StringBuilder(text);
+
+                int i = 0;
+                while ((i = sb.indexOf(" ", i + 100)) != -1) {
+                    sb.replace(i, i + 1, "\n");
+
+                }
+
+                textR = sb.toString();
+                
+                PanelTest paneltest = new PanelTest(textR, bild, text2,anvandare, admin, titel, datum, tid);
+                paneltest.setVisible(true);
+                jPanel3.add(paneltest);
+                
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(huvudFonster.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    
+    
+    
+    
+    
     }
     private void btnInstallningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInstallningActionPerformed
         
@@ -404,15 +468,15 @@ public class AnvändarSida extends javax.swing.JFrame {
     private javax.swing.JButton btnInstallning;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea txtProfilPosts;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel txtVisaEfterNamn;
     private javax.swing.JLabel txtVisaEpost;
     private javax.swing.JLabel txtVisaForNamn;
