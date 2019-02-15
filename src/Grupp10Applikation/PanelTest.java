@@ -24,18 +24,23 @@ public class PanelTest extends javax.swing.JPanel {
    private LogIn login;
    private String anvandarText;
    private String titel;
+<<<<<<< HEAD
    private String datum;
    private String tid;
    private String anvandarNamn;
    private ImageIcon bild;
    
- 
-
+   
+=======
+   public static String datum;
+   public static String tid;
+   public static String anvandarNamn;
    public static String nyttInlagg;
    public static String redigeratInlagg;
    public static String tidInlagg;
    public static String datumInlagg;
    public static String redigeradAnvandarNamn;
+>>>>>>> 31d2f851c029a9c934c95132bdf3994c5d61ceca
    
 
     /**
@@ -58,13 +63,15 @@ public class PanelTest extends javax.swing.JPanel {
         this.datum = datum;
         this.titel = titel;
         this.anvandarText = textMeddelande;
+<<<<<<< HEAD
         this.anvandarNamn = anvandarInlagg;        
         this.bild = bild;
         jTextArea1.setLineWrap(true);
         
+=======
         this.anvandarNamn = anvandarInlagg;
        jTextArea1.setEditable(false);
-
+>>>>>>> 31d2f851c029a9c934c95132bdf3994c5d61ceca
         
         jButton2.setVisible(false);
         
@@ -263,9 +270,6 @@ public class PanelTest extends javax.swing.JPanel {
         redigeradAnvandarNamn = jLabel2.getText();
         sql.uppdateraInlagg();
         jTextArea1.setEditable(false);
-        
-        anvandarText = redigeratInlagg;
-        
        
     }//GEN-LAST:event_btnRedigeraKlarActionPerformed
 

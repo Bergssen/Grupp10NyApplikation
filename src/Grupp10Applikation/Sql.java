@@ -34,12 +34,12 @@ public class Sql {
     private String guestTelnr = "";
     private int anvandarID = 0;
     private String ip = "10.22.19.205";
-
+<<<<<<< HEAD
     private Sql sql;
             
-
+=======
     private  String anvandareID;
-
+>>>>>>> origin/chrisisaak
 
     public Sql() {
 
