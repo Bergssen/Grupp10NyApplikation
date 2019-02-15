@@ -19,9 +19,6 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="ff" green="ff" red="ff" type="rgb"/>
-    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -50,10 +47,7 @@
                           <Component id="btnVisaAktivitetsflode" alignment="1" max="32767" attributes="0"/>
                           <Component id="btnForetagsFlode" max="32767" attributes="0"/>
                           <Component id="btnVisaAllaFloden" max="32767" attributes="0"/>
-                          <Component id="btnBokaEttMöte" max="32767" attributes="0"/>
                           <Component id="btnVisaProfil" max="32767" attributes="0"/>
-                          <Component id="btnForskningsFlode" alignment="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jButton1" max="32767" attributes="0"/>
                           <Component id="btnAdmin" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
@@ -139,29 +133,27 @@
                               <Component id="jSPValtDatum" min="-2" pref="216" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="jPHuvudInlaggPanel" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnVisaProfil" min="-2" pref="59" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                       <Component id="btnVisaAktivitetsflode" min="-2" pref="59" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Component id="btnForskningsFlode" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                                       <Component id="btnForetagsFlode" min="-2" pref="59" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnVisaAllaFloden" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="btnBokaEttMöte" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      <Component id="jButton1" min="-2" pref="60" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="btnAdmin" min="-2" pref="62" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="jPHuvudInlaggPanel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jScrollPane1" min="-2" pref="443" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jButton2" min="-2" max="-2" attributes="0"/>
@@ -199,11 +191,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVisaAktivitetsflodeActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnForskningsFlode">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Visa forskningsfl&#xf6;de"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnVisaAllaFloden">
       <Properties>
         <Property name="text" type="java.lang.String" value="Visa alla fl&#xf6;den"/>
@@ -238,11 +225,6 @@
         <Property name="text" type="java.lang.String" value="Ta bort notis"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnBokaEttM&#xf6;te">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Boka ett m&#xf6;te"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblProfilbild">
       <Properties>
         <Property name="text" type="java.lang.String" value=" H&#xe4;r visas profilbilden"/>
@@ -269,11 +251,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Skapa nytt inl&#xe4;gg"/>
-      </Properties>
-    </Component>
     <Component class="com.toedter.calendar.JCalendar" name="jCalendar1">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
